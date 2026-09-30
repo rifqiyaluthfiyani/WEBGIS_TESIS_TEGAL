@@ -426,21 +426,13 @@
       <aside class="sediment-side"><small>HASIL ANALISA</small><h3 id="sedimentSideTitle">Semua Segmen</h3><div class="sediment-kpis"><article><span>KELAS DOMINAN</span><b id="sedDominant">—</b><small id="sedDominantPct">Menunggu GeoJSON</small></article><article><span>JUMLAH DATA</span><b id="sedCount">—</b><small>observasi spasial</small></article></div><div class="sediment-conclusion"><span>KESIMPULAN SINGKAT</span><p id="sedConclusion">Pilih segmen untuk membaca kecenderungan proksi sedimen.</p></div></aside>
     </div>
 
-    <div class="heatmap-panel">
-      <div class="heatmap-head"><div><small>DINAMIKA TEMPORAL 1988–2025</small><h3>Heatmap Proksi Sedimen</h3></div><div class="heatmap-tabs"><button class="active" data-heatmap="natural">Natural</button><button data-heatmap="buatan">Buatan</button><button data-heatmap="sel">Per Sel</button></div></div>
-      <div class="heatmap-body">
-        <div class="heatmap-scroll"><div id="sedimentHeatmap" class="sediment-heatmap"></div></div>
-        <aside class="heatmap-legend" aria-label="Keterangan warna heatmap">
-          <small>KETERANGAN WARNA</small>
-          <div><i style="background:#1b9e77"></i><span>Surplus/Deposisi</span></div>
-          <div><i style="background:#66c2a5"></i><span>Deposisi Lokal</span></div>
-          <div><i style="background:#ffd92f"></i><span>Relatif Seimbang</span></div>
-          <div><i style="background:#fc8d59"></i><span>Bypass/Export</span></div>
-          <div><i style="background:#d73027"></i><span>Defisit/Erosi</span></div>
-          <div><i style="background:#e8ecea"></i><span>Tidak ada data</span></div>
-        </aside>
+    <div class="sed-dot-panel">
+      <div class="sed-dot-head">
+        <div><small>POLA SPASIAL PROKSI SEDIMEN</small><h3>Peta Titik Proksi Sedimen 1988–2025</h3><p></p></div>
+        <div class="sed-dot-tools"><div class="sed-dot-segments"><button class="active" data-dot-segment="all">Semua</button><button data-dot-segment="natural">Natural</button><button data-dot-segment="buatan">Buatan</button></div><label>Tahun <select id="sedDotYear"><option value="all" selected>Semua Tahun</option><option value="1988">1988</option><option value="1989">1989</option><option value="1990">1990</option><option value="1991">1991</option><option value="1992">1992</option><option value="1993">1993</option><option value="1994">1994</option><option value="1995">1995</option><option value="1996">1996</option><option value="1997">1997</option><option value="1998">1998</option><option value="1999">1999</option><option value="2000">2000</option><option value="2001">2001</option><option value="2002">2002</option><option value="2003">2003</option><option value="2004">2004</option><option value="2005">2005</option><option value="2006">2006</option><option value="2007">2007</option><option value="2008">2008</option><option value="2009">2009</option><option value="2010">2010</option><option value="2011">2011</option><option value="2012">2012</option><option value="2013">2013</option><option value="2014">2014</option><option value="2015">2015</option><option value="2016">2016</option><option value="2017">2017</option><option value="2018">2018</option><option value="2019">2019</option><option value="2020">2020</option><option value="2021">2021</option><option value="2022">2022</option><option value="2023">2023</option><option value="2024">2024</option><option value="2025">2025</option></select></label></div>
       </div>
-      <div class="heatmap-caption" id="heatmapCaption">Segmen natural: pola kelas proksi per transek dan tahun.</div>
+      <div class="sed-dot-map-wrap"><div id="sedimentDotMap"></div><div class="sed-dot-badge"><b id="sedDotYearLabel">Semua Tahun</b><span id="sedDotCount">— titik</span></div></div>
+      <div class="sed-dot-legend"><span><i style="background:#1b9e77"></i>Surplus/Deposisi</span><span><i style="background:#66c2a5"></i>Deposisi Lokal</span><span><i style="background:#ffd92f"></i>Relatif Seimbang</span><span><i style="background:#fc8d59"></i>Bypass/Export</span><span><i style="background:#d73027"></i>Defisit/Erosi</span></div>
     </div>
 
     <div class="sediment-comparison"><article><span>NATURAL</span><b>Defisit/Erosi 28,2%</b><p>Defisit/erosi merupakan kelas paling sering muncul (130 dari 461 observasi), diikuti bypass/export 24,9%. Pola ini konsisten dengan respons garis pantai natural yang lebih erosif.</p></article><article><span>BUATAN</span><b>Defisit/Erosi 26,8%</b><p>Defisit/erosi juga dominan (315 dari 1.175 observasi), tetapi distribusinya lebih heterogen karena deposisi, bypass, dan respons lokal di sekitar struktur pantai.</p></article></div>
@@ -451,7 +443,8 @@
   <div class="section-wrap">
     <div class="result-kicker"><span>06 / HASIL &amp; PEMBAHASAN · 04</span><span>RANDOM FOREST · PREDIKSI 2035</span></div>
     <div class="result-title-row"><div><h2>Prediksi Garis Pantai 2035</h2><p>Prediksi Random Forest dianalisis terpisah untuk segmen natural dan buatan, kemudian ditampilkan kembali dalam satu garis prediksi untuk membandingkan posisi 2035 terhadap baseline 2025.</p></div><div class="result-period"><small>HORIZON</small><strong>10 tahun</strong><span>2025 → 2035</span></div></div>
-    <div class="rf-layout"><div class="rf-map-card"><div class="map-toolbar"><b><span class="dot"></span>PETA PREDIKSI RF</b><span>GARIS_RF_2035 + baseline 2025</span></div><div class="rf-map-wrap"><div id="rfMap"></div><div id="rfInfo" class="cvi-info-map rf-info-map"><strong class="rf-info-title">Prediksi 2035</strong><p class="rf-info-hint"> untuk melihat transek.</p></div></div><div class="rf-legend"><span><i class="rf-line base-natural"></i>Baseline 2025 Natural</span><span><i class="rf-line base-buatan"></i>Baseline 2025 Buatan</span><span><i class="rf-line pred-natural"></i>2035 Natural</span><span><i class="rf-line pred-buatan"></i>2035 Buatan</span></div></div>
+
+    <div class="rf-layout"><div class="rf-map-card"><div class="map-toolbar"><b><span class="dot"></span>PETA PREDIKSI RF</b><span>GARIS_RF_2035 + baseline 2025</span></div><div class="rf-map-wrap"><div id="rfMap"></div><div id="rfInfo" class="cvi-info-map rf-info-map"><strong class="rf-info-title">Prediksi 2035</strong><p class="rf-info-hint"></p></div></div><div class="rf-legend"><span><i class="rf-line base-natural"></i>Baseline 2025 Natural</span><span><i class="rf-line base-buatan"></i>Baseline 2025 Buatan</span><span><i class="rf-line pred-natural"></i>2035 Natural</span><span><i class="rf-line pred-buatan"></i>2035 Buatan</span></div></div>
       <aside class="rf-side"><small>HASIL PREDIKSI</small><h3>Natural vs Buatan</h3><div class="rf-summary"><article><span>NATURAL</span><b>−24,10 m</b><small>rata-rata perubahan 2025–2035</small><p>12 dari 13 transek diprediksi mundur. Kemunduran terbesar T37: −43,33 m.</p></article><article><span>BUATAN</span><b>−3,57 m</b><small>rata-rata perubahan 2025–2035</small><p>20 dari 33 transek mundur dan 13 maju. Kemunduran terbesar T36: −47,69 m.</p></article></div><div class="rf-conclusion"><span>KESIMPULAN SINGKAT</span><p>Prediksi menunjukkan segmen natural cenderung mengalami kemunduran yang lebih konsisten, sedangkan segmen buatan lebih heterogen: sebagian mundur dan sebagian mengalami kemajuan garis pantai.</p></div></aside>
     </div>
 
