@@ -417,93 +417,103 @@ footer span{color:rgba(255,255,255,.6)}
 #sedimentInfo .sed-info-hint { margin:0; font-size:12px; color:#60777e; }
 
 
-/* RF popup compact */
-#rfInfo.rf-info-map{max-width:250px;padding:16px 18px;}
-#rfInfo .rf-info-title{display:block;font-family:Georgia,'Times New Roman',serif;font-size:28px;line-height:1;color:#123746;margin:0 0 12px;}
-#rfInfo .rf-info-detail{display:flex;flex-direction:column;gap:3px;font-size:13px;line-height:1.35;}
-#rfInfo .rf-info-detail span{color:#60777e;}
-#rfInfo .rf-info-detail b{color:#123746;font-size:15px;}
-#rfInfo .rf-info-hint{margin:0;font-size:12px;color:#60777e;}
+/* Tipologi geomorfologi — sinkron dengan draft tesis */
+.geom-tipology-box{margin-top:14px;padding:14px 16px;border:1px solid rgba(18,55,70,.14);border-radius:14px;background:#f7f4ec}
+.geom-tipology-box>span{display:block;font-size:11px;font-weight:800;letter-spacing:.12em;color:#177f7b;margin-bottom:8px}
+.geom-tipology-box p{margin:5px 0;font-size:13px;line-height:1.45;color:#123746}
+.geom-tipology-box small{display:block;margin-top:8px;line-height:1.45;color:#66777d}
 
+/* Integrated geomorphology typology in each result */
+.segment-typology-inline{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px}
+.segment-typology-inline article{border:1px solid #d5ded9;background:#f7f8f5;padding:13px 14px}
+.segment-typology-inline article.natural{border-top:3px solid #177f7b}.segment-typology-inline article.buatan{border-top:3px solid #123746}
+.segment-typology-inline span{display:block;font-size:10px;letter-spacing:.14em;font-weight:800;color:#177f7b;margin-bottom:6px}
+.segment-typology-inline b{display:block;font-size:12px;line-height:1.55;color:#123746}
+.segment-typology-inline p{font-size:11px;line-height:1.55;margin:7px 0 0;color:#52666b}
+.segment-typology-inline.compact{grid-template-columns:1fr;margin-top:14px}.segment-typology-inline.compact article{padding:11px 12px}
+.rf-typology{display:block;margin-top:10px;padding-top:8px;border-top:1px solid #d9e1dd;font-style:normal;font-size:10px;line-height:1.5;color:#52666b}
+.rf-evaluation-compact{padding-bottom:22px}.rf-metric-table-wrap{overflow-x:auto;margin-top:16px}
+.rf-metric-table{width:100%;border-collapse:collapse;background:#fff;font-size:12px}
+.rf-metric-table th{background:#123746;color:#fff;text-align:left;padding:11px 12px;font-size:10px;letter-spacing:.08em;text-transform:uppercase}
+.rf-metric-table td{border:1px solid #d8dfdc;padding:12px;vertical-align:top;color:#344d54}.rf-metric-table td strong{font-family:Georgia,serif;font-size:18px;color:#123746}
+.rf-metric-table td small{display:block;margin-top:5px;max-width:280px;line-height:1.45;color:#6b7d81}.rf-metric-note{margin:12px 0 0;font-size:11px;line-height:1.6;color:#52666b}
+@media(max-width:900px){.segment-typology-inline{grid-template-columns:1fr}.rf-metric-table{min-width:760px}}
 
-/* ===== REVISI PRESENTASI: LEGEND HEATMAP + HIGHLIGHT JAWABAN RQ ===== */
-.heatmap-body{display:grid;grid-template-columns:minmax(0,1fr) 190px;align-items:stretch}
-.heatmap-body .heatmap-scroll{min-width:0;margin:0;border-right:1px solid var(--line)}
-.heatmap-legend{padding:20px 17px;background:#f8faf8;display:flex;flex-direction:column;justify-content:center;gap:12px}
-.heatmap-legend small{font-size:8px;letter-spacing:1.35px;font-weight:800;color:var(--teal);margin-bottom:4px}
-.heatmap-legend div{display:grid;grid-template-columns:24px 1fr;gap:9px;align-items:center;font-size:9px;line-height:1.25;color:var(--navy)}
-.heatmap-legend i{display:block;width:24px;height:12px;border-radius:2px;box-shadow:inset 0 0 0 1px rgba(18,55,70,.05)}
+/* ===== RESTORE PETA TITIK PROKSI ===== */
+.sed-dot-panel{margin-top:26px;background:#fff;border:1px solid var(--line);box-shadow:0 12px 32px rgba(18,55,70,.06);overflow:hidden}
+.sed-dot-head{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;padding:20px 22px;border-bottom:1px solid var(--line)}
+.sed-dot-head small{display:block;font-size:9px;letter-spacing:1.4px;font-weight:800;color:var(--teal)}
+.sed-dot-head h3{font:500 27px Georgia,serif;color:var(--navy);margin:5px 0 0}
+.sed-dot-tools{display:flex;align-items:center;gap:14px;flex-wrap:wrap}.sed-dot-segments{display:flex;border:1px solid var(--line)}
+.sed-dot-segments button{border:0;border-right:1px solid var(--line);background:#fff;padding:9px 14px;font-size:9px;color:var(--muted)}.sed-dot-segments button:last-child{border-right:0}.sed-dot-segments button.active{background:var(--navy);color:#fff}
+.sed-dot-tools label{font-size:9px;color:var(--muted)}.sed-dot-tools select{margin-left:7px;padding:8px 28px 8px 10px;border:1px solid var(--line);background:#fff;color:var(--navy)}
+.sed-dot-map-wrap{position:relative}#sedimentDotMap{height:520px;background:#dce8e7}.sed-dot-badge{position:absolute;top:14px;left:14px;z-index:3;background:rgba(255,255,255,.94);border-left:3px solid var(--teal);padding:10px 13px;box-shadow:0 5px 18px rgba(18,55,70,.12)}.sed-dot-badge b,.sed-dot-badge span{display:block}.sed-dot-badge b{font-size:12px;color:var(--navy)}.sed-dot-badge span{font-size:9px;color:var(--muted);margin-top:2px}
+.sed-dot-legend{display:flex;flex-wrap:wrap;gap:18px;padding:13px 18px;border-top:1px solid var(--line);font-size:9px;color:var(--muted)}.sed-dot-legend span{display:flex;align-items:center;gap:6px}.sed-dot-legend i{display:inline-block;width:11px;height:11px;border-radius:50%}
 
-.cvi-rq1-note,.rf-rq2{
-  margin-top:30px!important;
-  padding:30px 34px!important;
-  border-left:0!important;
-  border-radius:14px;
-  box-shadow:0 16px 38px rgba(18,55,70,.14);
-}
-.cvi-rq1-note{
-  background:linear-gradient(135deg,#123746 0%,#177f7b 100%)!important;
-}
+/* Jawaban RQ dibuat kembali sebagai blok utama yang mudah terlihat */
+.cvi-rq1-note,.rf-rq2{margin-top:28px;padding:28px 32px;background:var(--navy);border-left:6px solid var(--teal);box-shadow:0 14px 34px rgba(18,55,70,.14)}
+.cvi-rq1-note span,.rf-rq2 span{font-size:10px;letter-spacing:1.8px;font-weight:800;color:#9edbd4}
+.cvi-rq1-note h3,.rf-rq2 h3{font:500 27px Georgia,serif;color:#fff;margin:7px 0 10px}
+.cvi-rq1-note p,.rf-rq2 p{margin:0;max-width:none;font-size:14px;line-height:1.75;color:#eef6f4}.cvi-rq1-note strong,.rf-rq2 strong{color:#fff}
+@media(max-width:900px){.sed-dot-head{align-items:flex-start;flex-direction:column}#sedimentDotMap{height:430px}.cvi-rq1-note,.rf-rq2{padding:22px}.cvi-rq1-note h3,.rf-rq2 h3{font-size:23px}}
+/* Final: tipologi langsung menonjol di kesimpulan */
+.tip-highlight{background:#e9f04a;color:#123746;padding:1px 5px;border-radius:4px;font-weight:800}
+/* RQ1 dan RQ2 sengaja dibedakan secara visual */
+.cvi-rq1-note{background:linear-gradient(110deg,#123746,#177f7b)!important;border-left:0!important;border-radius:18px!important;padding:32px 38px!important}
+.cvi-rq1-note span{display:inline-block;background:#e9f04a;color:#123746!important;padding:7px 13px;border-radius:18px}
+.rf-rq2{background:#f7f4ec!important;border:2px solid #123746!important;border-left:8px solid #177f7b!important;border-radius:4px!important;padding:30px 34px!important;box-shadow:none!important}
+.rf-rq2 span{display:inline-block;background:#123746;color:#fff!important;padding:7px 13px;border-radius:3px}
+.rf-rq2 h3,.rf-rq2 p,.rf-rq2 strong{color:#123746!important}
+/* Dokumentasi tipologi geomorfologi dari draft tesis */
+.geom-photo-section{margin-top:24px;border:1px solid #d5dfdc;background:#fff;padding:22px}
+.geom-photo-head{display:flex;justify-content:space-between;gap:24px;align-items:end;margin-bottom:16px}
+.geom-photo-head span{font-size:11px;letter-spacing:2px;font-weight:800;color:#087c78}
+.geom-photo-head h3{font-family:Georgia,serif;font-size:28px;color:#0b3443;margin:5px 0 0}
+.geom-photo-head p{margin:0;max-width:480px;color:#64777c;font-size:13px}
+.geom-photo-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px}
+.geom-photo-card{border:1px solid #d8e0de;background:#f7f8f5;overflow:hidden;cursor:pointer;transition:.18s ease}
+.geom-photo-card:hover{transform:translateY(-2px);box-shadow:0 8px 22px rgba(10,52,67,.12)}
+.geom-photo-card img{width:100%;height:190px;object-fit:cover;display:block}
+.geom-photo-card div{padding:11px 12px}
+.geom-photo-card b{display:block;color:#0b3443;font-size:14px}.geom-photo-card small{display:block;color:#6a7c80;margin-top:4px;font-size:11px}
+.cvi-summary-grid.cvi-total-only{grid-template-columns:1fr}.cvi-summary-grid.cvi-total-only #cviMeanCard{display:none}.cvi-summary-grid.cvi-total-only article{max-width:none}
+@media(max-width:1000px){.geom-photo-grid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:650px){.geom-photo-head{display:block}.geom-photo-head p{margin-top:8px}.geom-photo-grid{grid-template-columns:repeat(2,1fr)}.geom-photo-card img{height:160px}}
+
+/* FINAL: samakan tampilan Jawaban RQ2 dengan Jawaban RQ1 */
 .rf-rq2{
-  background:linear-gradient(135deg,#0b2b38 0%,#245f70 100%)!important;
+  margin-top:28px!important;
+  padding:34px 42px!important;
+  background:linear-gradient(115deg,#123746 0%,#177f7b 100%)!important;
+  border:0!important;
+  border-left:0!important;
+  border-radius:18px!important;
+  box-shadow:none!important;
 }
-.cvi-rq1-note span,.rf-rq2 span{
-  display:inline-block;
-  padding:6px 10px;
-  border-radius:999px;
-  background:#dce548;
+.rf-rq2 span{
+  display:inline-block!important;
+  background:#eef238!important;
   color:#123746!important;
+  padding:7px 14px!important;
+  border-radius:999px!important;
   font-size:10px!important;
   letter-spacing:1.5px!important;
-  font-weight:900!important;
+  font-weight:800!important;
 }
-.cvi-rq1-note p,.rf-rq2 p{
-  margin-top:16px!important;
-  max-width:none!important;
-  color:rgba(255,255,255,.92)!important;
-  font-size:16px!important;
-  line-height:1.72!important;
-}
-.cvi-rq1-note p strong,.rf-rq2 p strong{
+.rf-rq2 h3{
+  margin:18px 0 8px!important;
+  font:500 30px Georgia,serif!important;
   color:#fff!important;
-  font-family:Georgia,'Times New Roman',serif;
-  font-size:23px;
-  line-height:1.45;
-  font-weight:500;
 }
-@media(max-width:900px){
-  .heatmap-body{grid-template-columns:1fr}
-  .heatmap-body .heatmap-scroll{border-right:0;border-bottom:1px solid var(--line)}
-  .heatmap-legend{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px 16px}
-  .heatmap-legend small{grid-column:1/-1}
-  .cvi-rq1-note,.rf-rq2{padding:24px!important}
-  .cvi-rq1-note p,.rf-rq2 p{font-size:14px!important}
-  .cvi-rq1-note p strong,.rf-rq2 p strong{font-size:20px}
+.rf-rq2 p{
+  margin:0!important;
+  font-size:14px!important;
+  line-height:1.75!important;
+  color:#fff!important;
 }
+.rf-rq2 strong{color:#fff!important}
+@media(max-width:900px){.rf-rq2{padding:26px!important;border-radius:14px!important}.rf-rq2 h3{font-size:24px!important}}
 
-
-/* ===== RF MODEL EVALUATION ===== */
-.rf-evaluation-panel{margin-top:26px;padding:24px;background:white;border:1px solid var(--line)}
-.rf-evaluation-head small{font-size:9px;letter-spacing:1.4px;font-weight:700;color:var(--teal)}
-.rf-evaluation-head h3{font:500 27px Georgia,serif;color:var(--navy);margin:5px 0}
-.rf-evaluation-head p{font-size:11px;color:var(--muted)}
-.rf-evaluation-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:20px}
-.rf-evaluation-grid>article{padding:18px 20px;background:var(--bg);border-top:3px solid var(--teal)}
-.rf-evaluation-grid>article:last-child{border-top-color:var(--navy)}
-.rf-evaluation-grid>article>span{font-size:9px;letter-spacing:1.3px;font-weight:700;color:var(--teal)}
-.rf-metric-row{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:13px}
-.rf-metric-row>div{padding:12px;background:white;border:1px solid var(--line)}
-.rf-metric-row small{display:block;font-size:9px;color:var(--muted)}
-.rf-metric-row b{display:block;margin-top:4px;font:600 22px Georgia,serif;color:var(--navy)}
-.rf-metric-row em{display:block;margin-top:2px;font-style:normal;font-size:8px;color:var(--muted)}
-@media(max-width:700px){.rf-evaluation-grid{grid-template-columns:1fr}.rf-metric-row{grid-template-columns:repeat(3,1fr)}}
-
-
-/* Peta titik proksi sedimen */
-.sed-dot-panel{margin-top:22px;background:#fff;border:1px solid var(--line)}
-.sed-dot-head{display:flex;justify-content:space-between;gap:24px;align-items:flex-end;padding:20px 22px;border-bottom:1px solid var(--line)}
-.sed-dot-head small{font-size:9px;letter-spacing:1.3px;color:var(--teal);font-weight:700}.sed-dot-head h3{font:500 25px Georgia,serif;color:var(--navy);margin:4px 0}.sed-dot-head p{font-size:11px;color:var(--muted)}
-.sed-dot-tools{display:flex;align-items:center;gap:12px}.sed-dot-segments{display:flex;border:1px solid var(--line)}.sed-dot-segments button{border:0;border-right:1px solid var(--line);background:#fff;padding:8px 12px;font-size:9px;color:var(--muted)}.sed-dot-segments button:last-child{border-right:0}.sed-dot-segments button.active{background:var(--navy);color:#fff}.sed-dot-tools label{font-size:9px;color:var(--muted)}.sed-dot-tools select{margin-left:6px;padding:7px 9px;border:1px solid var(--line);color:var(--navy);background:#fff}
-.sed-dot-map-wrap{position:relative}#sedimentDotMap{height:430px;background:#dce8e7}.sed-dot-badge{position:absolute;left:16px;top:16px;background:rgba(255,255,255,.92);border-left:3px solid var(--teal);padding:10px 13px;box-shadow:0 6px 18px rgba(18,55,70,.12)}.sed-dot-badge b{display:block;font:600 20px Georgia,serif;color:var(--navy)}.sed-dot-badge span{font-size:9px;color:var(--muted)}
-.sed-dot-legend{display:flex;flex-wrap:wrap;gap:15px;padding:12px 16px;border-top:1px solid var(--line);font-size:9px;color:var(--muted)}.sed-dot-legend i{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:6px;vertical-align:-1px;border:1px solid rgba(18,55,70,.12)}
-@media(max-width:900px){.sed-dot-head{align-items:flex-start;flex-direction:column}.sed-dot-tools{flex-wrap:wrap}#sedimentDotMap{height:360px}}
+/* RF: kesimpulan dipindahkan ke bawah peta agar tampil memanjang */
+.rf-conclusion-wide{margin:0;border-left:0;border-top:3px solid var(--teal);padding:18px 22px 20px;background:var(--teal-soft)}
+.rf-conclusion-wide p{max-width:none;margin:8px 0 0;font-size:11px;line-height:1.65}
