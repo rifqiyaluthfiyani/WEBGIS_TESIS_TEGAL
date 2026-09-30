@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="WebGIS tesis dinamika garis pantai Kota Tegal">
+  <title>WebGIS Tesis Kota Tegal | Rifqiya Luthfiyani</title>
+
+  <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@5.7.0/dist/maplibre-gl.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header class="hero" id="cover">
+  <div class="hero-left">
+    <div class="brand-lockup">
+      <span class="brand-mark">◎</span>
+      <div>
+        <strong>WEBGIS TESIS</strong>
+        <small>Magister Geografi · Universitas Indonesia</small>
+      </div>
+    </div>
+
+    <div class="hero-copy">
+      <h1>Pemodelan Pengaruh Fisik terhadap Dinamika Garis Pantai Kota Tegal Menggunakan DSAS, Random Forest dan CVI</h1>
+      <p class="hero-desc">Mengintegrasikan DSAS, <em>Coastal Vulnerability Index</em>, proksi neraca sedimen, <em>Random Forest</em>, dan evaluasi tata ruang pesisir.</p>
+
+      <div class="author">
+        <strong>Rifqiya Luthfiyani</strong>
+        <span>NPM. 2406372823</span>
+      </div>
+
+      <div class="advisor">
+        <span>PEMBIMBING</span>
+        <p>Dr.Eng. Masita Dwi Mandini Manessa, S.Si., M.Si., M.Eng</p>
+        <p>Dr. Iwan Gunawan, M.Sc</p>
+      </div>
+
+      <button id="exploreBtn" class="primary-btn">MULAI EKSPLORASI <b>↓</b></button>
+    </div>
+  </div>
+
+  <div class="hero-visual" aria-label="Ilustrasi kawasan pesisir">
+    <div class="study-card">
+      <small>STUDY AREA</small>
+      <strong>Kota Tegal</strong>
+      <span>Pantai Utara Jawa · Jawa Tengah</span>
+    </div>
+  </div>
+</header>
+
+<nav id="menu-tesis" class="navbar">
+  <div class="nav-inner">
+    <button class="nav-link" data-target="latar-belakang">Latar Belakang</button>
+    <button class="nav-link" data-target="research-gap">Celah Penelitian</button>
+    <button class="nav-link" data-target="batasan">Batasan Penelitian</button>
+    <button class="nav-link" data-target="pertanyaan">Pertanyaan Penelitian</button>
+    <button class="nav-link" data-target="metode">Metode Penelitian</button>
+    <div class="nav-dropdown">
+      <button class="nav-link nav-result-btn" id="hasilMenuBtn">Hasil &amp; Pembahasan <span>⌄</span></button>
+      <div class="result-dropdown" id="hasilSubmenu">
+        <button data-target="hasil-dsas"><b>01</b><span>Dinamika Garis Pantai<small>DSAS · Natural &amp; Buatan</small></span></button>
+        <button data-target="hasil-cvi"><b>02</b><span>Kerentanan Pesisir<small>CVI · Natural &amp; Buatan</small></span></button>
+        <button data-target="hasil-sedimen"><b>03</b><span>Proksi Neraca Sedimen<small>Natural · Buatan · Sel</small></span></button>
+        <button data-target="hasil-rf"><b>04</b><span>Prediksi Garis Pantai<small>Random Forest · 2035</small></span></button>
+        <button disabled><b>05</b><span>Evaluasi Tata Ruang<small>RDTR</small></span></button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<main>
+
+<section id="latar-belakang" class="section">
+  <div class="section-wrap">
+    <div class="section-head">
+      <p class="section-no">01 / LATAR BELAKANG</p>
+      <h2>Dinamika Pesisir Kota Tegal</h2>
+      <p>Kota Tegal berada pada pesisir Pantura. Proses alam dan aktivitas manusia membentuk perubahan garis pantai yang berbeda antarsegmen.</p>
+    </div>
+
+    <div class="background-grid">
+      <div class="map-card">
+        <div class="map-label">STUDY AREA</div>
+        <div id="storyMap"></div>
+        <div class="map-meta">
+          <span><small>Wilayah</small><b>Kota Tegal</b></span>
+          <span><small>Periode</small><b>1988–2025</b></span>
+          <span><small>Unit</small><b>46 transek</b></span>
+        </div>
+      </div>
+
+      <div class="key-grid">
+        <article class="key-card">
+          <span>01</span>
+          <h3>Pesisir Produktif</h3>
+          <p>Permukiman, tambak, perikanan, pelabuhan, dan industri berkembang di dataran pesisir.</p>
+        </article>
+        <article class="key-card">
+          <span>02</span>
+          <h3>Tekanan Pesisir</h3>
+          <p>Abrasi, rob, perubahan sedimen, dan pemanfaatan ruang memengaruhi kondisi pantai.</p>
+        </article>
+        <article class="key-card">
+          <span>03</span>
+          <h3>Respons Berbeda</h3>
+          <p>Segmen natural dan segmen dengan intervensi manusia menunjukkan respons shoreline yang berbeda.</p>
+        </article>
+        <article class="key-card accent">
+          <span>04</span>
+          <h3>Kebutuhan Analisis</h3>
+          <p>Perubahan historis perlu dihubungkan dengan kerentanan, sedimen, prediksi, dan tata ruang.</p>
+        </article>
+      </div>
+    </div>
+
+    <div class="flow">
+      <b>Proses fisik</b><i>+</i><b>Intervensi manusia</b><i>→</i><b>Dinamika shoreline</b>
+    </div>
+  </div>
+</section>
+
+<section id="research-gap" class="section alt">
+  <div class="section-wrap narrow">
+    <div class="section-head">
+      <p class="section-no">02 / CELAH PENELITIAN</p>
+      <h2>Analisis pesisir masih banyak dilakukan secara terpisah</h2>
+    </div>
+
+    <div class="compare-grid">
+      <article>
+        <small>KAJIAN TERDAHULU</small>
+        <h3>Historis dan sektoral</h3>
+        <p>Perubahan garis pantai, kerentanan, sedimen, dan prediksi sering dianalisis sebagai komponen terpisah.</p>
+      </article>
+      <div class="arrow">→</div>
+      <article class="accent-box">
+        <small>PENELITIAN INI</small>
+        <h3>Spasial-temporal terintegrasi</h3>
+        <p>DSAS, CVI, proksi sedimen, Random Forest, dan tata ruang dihubungkan dalam satu kerangka analisis.</p>
+      </article>
+    </div>
+
+    <div class="statement">
+      <span>POSISI PENELITIAN</span>
+      <strong>Kebaruan penelitian terletak pada integrasi rekonstruksi historis, kerentanan, konteks proses sedimen, pemodelan prediktif, dan evaluasi tata ruang.</strong>
+    </div>
+  </div>
+</section>
+
+<section id="batasan" class="section">
+  <div class="section-wrap narrow">
+    <div class="section-head">
+      <p class="section-no">03 / BATASAN PENELITIAN</p>
+      <h2>Ruang Lingkup Analisis</h2>
+    </div>
+
+    <div class="scope-grid">
+      <article><span>01</span><small>WILAYAH</small><h3>Pesisir Kota Tegal</h3></article>
+      <article><span>02</span><small>PERIODE</small><h3>1988–2025</h3></article>
+      <article><span>03</span><small>UNIT ANALISIS</small><h3>46 transek</h3></article>
+      <article><span>04</span><small>DINAMIKA</small><h3>DSAS</h3><p>LRR · EPR · NSM · SCE</p></article>
+      <article><span>05</span><small>KERENTANAN</small><h3>8 parameter CVI</h3></article>
+      <article><span>06</span><small>PROSES</small><h3>Proksi sedimen</h3><p>TSS · Hs · MWP · MWD · Δ shoreline · muara</p></article>
+      <article><span>07</span><small>PREDIKSI</small><h3>Random Forest</h3><p>Proyeksi posisi garis pantai 2035</p></article>
+      <article><span>08</span><small>TIPOLOGI</small><h3>Natural & buatan</h3><p>Pemisahan respons pantai terhadap intervensi</p></article>
+    </div>
+  </div>
+</section>
+
+<section id="pertanyaan" class="section dark">
+  <div class="section-wrap narrow">
+    <div class="section-head light">
+      <p class="section-no">04 / PERTANYAAN PENELITIAN</p>
+      <h2>Tiga pertanyaan penelitian</h2>
+    </div>
+
+    <div class="rq-grid">
+      <article class="rq-card">
+        <span>RQ 01</span>
+        <h3>Bagaimana bentuk pola spasial pengaruh Indeks Kerentanan Pesisir (<em>Coastal Vulnerability Index</em>/CVI) terhadap dinamika perubahan garis pantai di wilayah pesisir Kota Tegal?</h3>
+        <p>Fokus: keterkaitan pola kerentanan pesisir dengan dinamika garis pantai serta variasinya pada segmen natural dan buatan.</p>
+      </article>
+
+      <article class="rq-card">
+        <span>RQ 02</span>
+        <h3>Bagaimana prediksi posisi garis pantai Kota Tegal dalam 10 tahun mendatang berkaitan dengan pola perubahan fisik yang terjadi menggunakan algoritma <em>Random Forest</em>?</h3>
+        <p>Fokus: prediksi posisi garis pantai hingga 2035 berdasarkan pola perubahan fisik pada segmen natural dan buatan.</p>
+      </article>
+
+      <article class="rq-card">
+        <span>RQ 03</span>
+        <h3>Bagaimana keterkaitan hasil analisis kerentanan pesisir dan prediksi perubahan garis pantai dengan RDTR di wilayah pesisir Kota Tegal?</h3>
+        <p>Fokus: membandingkan kerentanan dan prediksi perubahan garis pantai dengan arahan pemanfaatan ruang dalam RDTR pesisir Kota Tegal.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="metode" class="section method-section">
+  <div class="section-wrap method-wrapper">
+    <div class="section-head method-header">
+      <p class="section-no">05 / METODE PENELITIAN</p>
+      <h2>Alur Penelitian</h2>
+      <p>Penelitian dilaksanakan dari pengumpulan dan pengolahan data multitemporal hingga analisis dinamika, kerentanan, proksi sedimen, prediksi garis pantai, dan evaluasi tata ruang.</p>
+    </div>
+
+    <div class="method-flow method-flow-seven">
+      <button class="method-step active" data-method="m1"><span>TAHAP 01</span><b>Pengumpulan Data</b><small>Citra · DEM · Gelombang · Pasut · TSS · RDTR</small></button>
+      <div>→</div>
+      <button class="method-step" data-method="m2"><span>TAHAP 02</span><b>Pra-pemrosesan</b><small>Masking · Komposit · Shoreline · Koreksi pasut</small></button>
+      <div>→</div>
+      <button class="method-step" data-method="m3"><span>TAHAP 03</span><b>DSAS</b><small>LRR · EPR · NSM · SCE</small></button>
+      <div>→</div>
+      <button class="method-step" data-method="m4"><span>TAHAP 04</span><b>CVI</b><small>8 parameter kerentanan</small></button>
+      <div>→</div>
+      <button class="method-step" data-method="m5"><span>TAHAP 05</span><b>Proksi Sedimen</b><small>TSS · Muara · Gelombang · Shoreline</small></button>
+      <div>→</div>
+      <button class="method-step" data-method="m6"><span>TAHAP 06</span><b>Random Forest</b><small>Natural · Buatan · Prediksi 2035</small></button>
+      <div>→</div>
+      <button class="method-step" data-method="m7"><span>TAHAP 07</span><b>RDTR</b><small>Overlay · Spatial mismatch</small></button>
+    </div>
+    <p class="method-hint"></p>
+
+    <div class="method-details">
+      <article id="m1" class="method-detail show">
+        <strong>01 · Pengumpulan Data</strong>
+        <p>Landsat 5/7/8/9 , DEMNAS, ERA5, INATides, data kenaikan muka laut, tutupan lahan, TSS, muara sungai, struktur pantai, dan RDTR Kota Tegal.</p>
+      </article>
+
+      <article id="m2" class="method-detail">
+        <strong>02 · Pra-pemrosesan</strong>
+        <p>Citra diseleksi pada musim kering, dilakukan masking awan, komposit median, ekstraksi badan air menggunakan indeks air dan threshold Otsu, kemudian dibentuk shoreline multitemporal 1988–2025.</p>
+        <div class="mini-process"><span>Landsat / Sentinel</span><b>→</b><span>Masking</span><b>→</b><span>Komposit</span><b>→</b><span>Indeks air + Otsu</span><b>→</b><span>Shoreline</span></div>
+      </article>
+
+      <article id="m3" class="method-detail">
+        <strong>03 · Digital Shoreline Analysis System (DSAS)</strong>
+        <p>Dinamika garis pantai dianalisis pada transek berjarak 200 m. LRR digunakan sebagai metrik utama, sedangkan EPR, NSM, dan SCE digunakan untuk membaca besar serta konsistensi perubahan.</p>
+        <div class="mini-process"><span>Baseline</span><b>→</b><span>Transek 200 m</span><b>→</b><span>LRR</span><span>EPR</span><span>NSM</span><span>SCE</span></div>
+      </article>
+
+      <article id="m4" class="method-detail">
+        <strong>04 · Coastal Vulnerability Index (CVI)</strong>
+        <p>Delapan parameter diberi skor 1–5. Skor 1 menunjukkan kerentanan sangat rendah dan skor 5 menunjukkan kerentanan sangat tinggi.</p>
+        <div class="parameter-chips"><span>Shoreline</span><span>Geomorfologi</span><span>Slope</span><span>Elevasi</span><span>Gelombang</span><span>SLR</span><span>Pasang Surut</span><span>Tutupan Lahan</span></div>
+        <div class="score-block">
+          <div class="score-title"><span>KLASIFIKASI PARAMETER</span><h4>Skoring Coastal Vulnerability Index</h4></div>
+          <div class="table-scroll"><table class="score-table">
+            <thead><tr><th>Parameter</th><th>1 · Sangat Rendah</th><th>2 · Rendah</th><th>3 · Sedang</th><th>4 · Tinggi</th><th>5 · Sangat Tinggi</th></tr></thead>
+            <tbody>
+              <tr><td><b>Shoreline (m/tahun)</b></td><td>≥ 2,0<br><small>Akresi tinggi</small></td><td>1,0–2,0</td><td>−1,0–1,0<br><small>Stabil</small></td><td>−1,1–−2,0</td><td>≤ −2,0<br><small>Abrasi tinggi</small></td></tr>
+              <tr><td><b>Geomorfologi</b></td><td>Tebing batuan / rocky coast</td><td>Pantai pasir kasar</td><td>Pantai pasir halus</td><td>Dataran aluvial / estuari</td><td>Rawa, mangrove, tambak, mudflat</td></tr>
+              <tr><td><b>Slope (%)</b></td><td>&gt; 12</td><td>8–12</td><td>4–8</td><td>2–4</td><td>&lt; 2</td></tr>
+              <tr><td><b>Elevasi (m)</b></td><td>&gt; 30,1</td><td>20,1–30,0</td><td>10,1–20,0</td><td>5,1–10,0</td><td>0–5,0</td></tr>
+              <tr><td><b>Hs rata-rata (m)</b></td><td>&lt; 0,245</td><td>0,245–0,258</td><td>0,258–0,268</td><td>0,268–0,275</td><td>&gt; 0,275</td></tr>
+              <tr><td><b>SLR (mm/tahun)</b></td><td>&lt; −1,21</td><td>−1,21–0,1</td><td>0,1–1,24</td><td>1,24–1,36</td><td>&gt; 1,36</td></tr>
+              <tr><td><b>Pasang surut (m)</b></td><td>&gt; 0,921</td><td>0,884–0,921</td><td>0,873–0,884</td><td>0,837–0,873</td><td>&lt; 0,837</td></tr>
+              <tr><td><b>Tutupan lahan</b></td><td>Mangrove</td><td>Pantai</td><td>Tambak campuran</td><td>Muara / lahan terbuka dinamis</td><td>Bangunan / pelabuhan / kawasan terbangun padat</td></tr>
+            </tbody>
+          </table></div>
+          <p class="source-note">Skoring mengacu pada klasifikasi yang digunakan dalam tesis: Gornitz (1991), Thieler &amp; Hammar-Klose (2000), serta Abuodha/Aboudha.</p>
+        </div>
+      </article>
+
+      <article id="m5" class="method-detail">
+        <strong>05 · Proksi Neraca Sedimen</strong>
+        <p>Proksi digunakan untuk membaca kecenderungan relatif surplus–defisit, bukan menghitung neraca sedimen absolut. Interpretasi utama menggabungkan respons shoreline dengan TSS terhadap ambang lokal 30,4 mg/L, jarak muara serta Hs, MWD, dan MWP digunakan untuk menjelaskan sumber dan redistribusi sedimen.</p>
+        <div class="mini-process"><span>Muara<br><small>Sumber</small></span><b>+</b><span>TSS<br><small>Ketersediaan</small></span><b>+</b><span>Hs · MWD · MWP<br><small>Redistribusi</small></span><b>+</b><span>Δ Shoreline<br><small>Respons</small></span><b>→</b><span>Proksi Sedimen</span></div>
+        <div class="score-block sediment-score">
+          <div class="score-title"><span>ATURAN KLASIFIKASI</span><h4>Lima kelas proksi neraca sedimen</h4></div>
+          <div class="table-scroll"><table class="score-table proxy-table">
+            <thead><tr><th>Respons shoreline</th><th>Status TSS</th><th>Kelas proksi</th><th>Interpretasi</th></tr></thead>
+            <tbody>
+              <tr><td><b>Akresi</b></td><td>≥ 30,4 mg/L</td><td><span class="proxy-tag surplus">Surplus / Deposisi</span></td><td>Sedimen tersuspensi melimpah dan terakumulasi pada segmen.</td></tr>
+              <tr><td><b>Akresi</b></td><td>&lt; 30,4 mg/L</td><td><span class="proxy-tag local">Deposisi Lokal</span></td><td>Pantai tetap maju meskipun TSS rendah; dapat mencerminkan material dasar yang tidak terekam TSS optik.</td></tr>
+              <tr><td><b>Stabil</b></td><td>Tidak menentukan</td><td><span class="proxy-tag balance">Relatif Seimbang</span></td><td>Masukan dan keluaran sedimen diinterpretasikan relatif setara.</td></tr>
+              <tr><td><b>Abrasi</b></td><td>≥ 30,4 mg/L</td><td><span class="proxy-tag bypass">Bypass / Export</span></td><td>Material tersedia, tetapi tidak terakumulasi dan cenderung ditransportasikan ke segmen lain.</td></tr>
+              <tr><td><b>Abrasi</b></td><td>&lt; 30,4 mg/L</td><td><span class="proxy-tag deficit">Defisit / Erosi</span></td><td>Ketersediaan material rendah disertai kemunduran shoreline.</td></tr>
+            </tbody>
+          </table></div>
+          <p class="source-note"><b>Ambang TSS 30,4 mg/L</b> = median seluruh data TSS tahunan pada 46 transek periode 1988–2025 (n = 1.683). Kelas merupakan interpretasi proksi proses sedimen, bukan volume atau massa sedimen absolut.</p>
+        </div>
+      </article>
+
+      <article id="m6" class="method-detail">
+        <strong>06 · Random Forest</strong>
+        <p>Model dibangun terpisah untuk segmen natural dan buatan, kemudian hasil prediksi direkonstruksi menjadi satu garis pantai 2035. Evaluasi model menggunakan R², MAE, dan RMSE.</p>
+        <div class="mini-process"><span>DSAS</span><b>+</b><span>CVI</span><b>+</b><span>Variabel fisik &amp; sedimen</span><b>→</b><span>RF Natural / Buatan</span><b>→</b><span>R² · MAE · RMSE</span><b>→</b><span>Shoreline 2035</span></div>
+      </article>
+
+      <article id="m7" class="method-detail">
+        <strong>07 · Evaluasi Tata Ruang (RDTR)</strong>
+        <p>Hasil kerentanan pesisir dan prediksi garis pantai 2035 dioverlay dengan RDTR untuk mengidentifikasi keterkaitan dan spatial mismatch pada kawasan pesisir Kota Tegal.</p>
+        <div class="mini-process"><span>CVI</span><b>+</b><span>Prediksi 2035</span><b>+</b><span>RDTR</span><b>→</b><span>Overlay</span><b>→</b><span>Spatial Mismatch</span></div>
+      </article>
+    </div>
+
+    <div class="method-note"><b>Kerangka utama</b><span>Data → Pra-pemrosesan → DSAS → CVI → Proksi Sedimen → Random Forest → RDTR</span></div>
+  </div>
+</section>
+
+<section id="hasil-dsas" class="section result-section">
+  <div class="section-wrap">
+    <div class="result-kicker">06 / HASIL &amp; PEMBAHASAN <span>DINAMIKA GARIS PANTAI</span></div>
+    <div class="result-title-row">
+      <div><h2>Dinamika Garis Pantai 1988–2025</h2><p>Hasil DSAS dibaca terpisah antara segmen <b>natural</b> dan <b>buatan</b> agar respons perubahan garis pantai terhadap kondisi alami dan intervensi manusia dapat dibandingkan.</p></div>
+      <div class="result-period"><small>PERIODE ANALISIS</small><strong>37 tahun</strong><span>1988 → 2025</span></div>
+    </div>
+
+    <div class="dsas-layout">
+      <div class="dsas-map-card">
+        <div class="map-toolbar"><div><span class="dot"></span><b>PETA INTERAKTIF DSAS</b></div><small></b></small></div>
+        <div class="dsas-map-wrap">
+          <div id="dsasMap"></div>
+          <div id="dsasInfo" class="dsas-info dsas-info-map"><span>INFORMASI SEGMEN</span><strong>Semua Segmen</strong></p></div>
+        </div>
+        <div class="dsas-legend">
+          <span><i class="ln abr-high"></i>Abrasi Tinggi</span>
+          <span><i class="ln abr-mod"></i>Abrasi Sedang</span>
+          <span><i class="ln stable"></i>Stabil</span>
+          <span><i class="ln acc-mod"></i>Akresi Sedang</span>
+          <span><i class="ln acc-high"></i>Akresi Tinggi</span>
+        </div>
+      </div>
+      <aside class="dsas-side">
+        <small>HASIL</small><h3>Natural vs Buatan</h3>
+        <div class="segment-filter"><button class="active" data-segment="all">Semua</button><button data-segment="natural">Natural</button><button data-segment="buatan">Buatan</button></div>
+        <div class="metric-grid">
+          <article>
+            <span>LRR RATA-RATA</span>
+            <b id="dsasLrrValue">−0,96 m/tahun</b>
+            <p id="dsasLrrConclusion">Tren garis pantai mundur.</p>
+          </article>
+          <article>
+            <span>POLA DOMINAN</span>
+            <b id="dsasPatternValue">69,57% Abrasi</b>
+            <small id="dsasPatternSub">32 dari 46 transek</small>
+            <p id="dsasPatternConclusion">Abrasi mendominasi.</p>
+          </article>
+        </div>
+        <div class="dsas-quick-conclusion">
+          <span>KESIMPULAN</span>
+          <p id="dsasQuickConclusion">Secara umum pesisir Kota Tegal mengalami kemunduran, dengan abrasi pada 69,57% transek.</p>
+        </div>
+      </aside>
+    </div>
+
+  </div>
+</section>
+
+
+<section id="hasil-cvi" class="section result-section cvi-section">
+  <div class="section-wrap">
+    <div class="result-kicker">06 / HASIL &amp; PEMBAHASAN <span>KERENTANAN PESISIR (CVI)</span></div>
+    <div class="result-title-row">
+      <div><h2>Kerentanan Pesisir: Natural vs Buatan</h2><p>Kerentanan dibaca terpisah pada segmen <b>natural</b> dan <b>buatan</b>. Pilih parameter untuk melihat pola spasial skor 1–5 dan ringkasan hasil setiap parameter.</p></div>
+      <div class="result-period"><small>PARAMETER CVI</small><strong>8</strong><span>skor 1 → 5</span></div>
+    </div>
+
+    <div class="cvi-controls">
+      <div class="cvi-segment-filter" aria-label="Segmentasi CVI">
+        <button class="active" data-cvi-segment="all">Semua</button>
+        <button data-cvi-segment="natural">Natural</button>
+        <button data-cvi-segment="buatan">Buatan</button>
+      </div>
+      <div class="cvi-param-tabs" aria-label="Parameter CVI">
+        <button class="active" data-cvi-param="shore">Shoreline</button>
+        <button data-cvi-param="slope">Slope</button>
+        <button data-cvi-param="geom">Geomorfologi</button>
+        <button data-cvi-param="elev">Elevasi</button>
+        <button data-cvi-param="gel">Gelombang</button>
+        <button data-cvi-param="pasut">Pasang Surut</button>
+        <button data-cvi-param="slr">SLR</button>
+        <button data-cvi-param="lahan">Tutupan Lahan</button>
+        <button data-cvi-param="cvi_total">CVI Total</button>
+      </div>
+    </div>
+
+    <div class="cvi-layout">
+      <div class="cvi-map-card">
+        <div class="map-toolbar"><div><span class="dot"></span><b id="cviMapTitle">CVI SEMUA SEGMEN · SHORELINE</b></div><small id="cviFileLabel"></b></small></div>
+        <div class="cvi-map-wrap">
+          <div id="cviMap"></div>
+          <div id="cviInfo" class="dsas-info cvi-info-map"><span>INFORMASI CVI</span><strong>Semua Segmen</strong><p>Atribut parameter dan skor akan tampil di sini.</p></div>
+        </div>
+        <div class="cvi-legend">
+          <span><i class="cvi-swatch s1"></i>Akresi Tinggi</span><span><i class="cvi-swatch s2"></i>Akresi Sedang</span><span><i class="cvi-swatch s3"></i>Stabil</span><span><i class="cvi-swatch s4"></i>Abrasi Sedang</span><span><i class="cvi-swatch s5"></i>Abrasi Tinggi</span>
+        </div>
+      </div>
+      <aside class="cvi-side">
+        <small>HASIL ANALISA</small><h3 id="cviSideTitle">Shoreline · Semua Segmen</h3>
+        <div class="cvi-summary-grid">
+          <article><span>RATA-RATA SKOR</span><b id="cviMeanScore">—</b><small id="cviMeanClass">Menunggu GeoJSON</small></article>
+          <article><span>KELAS DOMINAN</span><b id="cviDominantScore">—</b><small id="cviDominantCount">Menunggu GeoJSON</small></article>
+        </div>
+        <div class="cvi-short-conclusion"><span>KESIMPULAN SINGKAT</span><p id="cviConclusion">Data akan dihitung otomatis dari atribut skor pada GeoJSON yang dipilih.</p></div>
+      </aside>
+    </div>
+
+    <div class="cvi-rq1-note">
+      <span>JAWABAN RQ1 · CVI</span>
+      <p id="cviRQ1"><strong>Pola spasial CVI dan dinamika garis pantai Kota Tegal berbeda antara segmen natural dan buatan.</strong> Segmen natural memiliki kerentanan lebih tinggi (CVI rata-rata 44,4) dan abrasi lebih konsisten, dengan LRR rata-rata −2,38 m/tahun serta 12 dari 13 transek (92,3%) mengalami kemunduran. Segmen buatan memiliki CVI rata-rata lebih rendah (30,4) dan laju kemunduran lebih kecil, dengan LRR rata-rata −0,38 m/tahun, tetapi 20 dari 33 transek masih mengalami abrasi. Artinya, kerentanan yang tinggi cenderung berasosiasi dengan kemunduran garis pantai yang lebih kuat pada segmen natural, sedangkan pada segmen buatan responsnya lebih heterogen karena dipengaruhi intervensi pantai. Dengan demikian, hubungan CVI–dinamika garis pantai bersifat spasial dan perlu dibaca bersama tipologi geomorfologi serta status intervensi setiap segmen.</p>
+    </div>
+
+    <div class="discussion-note"><b>Inti pembahasan CVI</b><span>Parameter fisik → skor kerentanan → pola spasial natural–buatan → keterkaitan dengan dinamika garis pantai.</span></div>
+  </div>
+</section>
+
+
+<section id="hasil-sedimen" class="section result-section sediment-section">
+  <div class="section-wrap">
+    <div class="result-kicker"><span>06 / HASIL &amp; PEMBAHASAN · 03</span><span>PROKSI NERACA SEDIMEN · 1988–2025</span></div>
+    <div class="result-title-row"><div><h2>Proksi Neraca Sedimen</h2><p>Membaca kecenderungan relatif deposisi–defisit melalui TSS, karakter gelombang, perubahan shoreline, kedekatan muara, dan pembagian sel sedimen. Hasil merupakan proksi proses, bukan neraca sedimen absolut.</p></div><div class="result-period"><small>DATA SPASIAL</small><strong>3 layer</strong><span>Natural · Buatan · Sel</span></div></div>
+
+    <div class="sediment-controls">
+      <button class="active" data-sed-segment="all">Semua</button><button data-sed-segment="natural">Natural</button><button data-sed-segment="buatan">Buatan</button>
+    </div>
+    <div class="sediment-layout">
+      <div class="sediment-map-card">
+        <div class="map-toolbar"><b><span class="dot"></span>PETA PROKSI SEDIMEN</b><span>SEDIMEN_NATURAL · SEDIMEN_BUATAN · PEMBAGIAN_SEL</span></div>
+        <div class="sediment-map-wrap"><div id="sedimentMap"></div><div id="sedimentInfo" class="cvi-info-map"><span>INFORMASI PROKSI</span><strong>Semua Segmen</strong><p></p></div></div>
+        <div class="sediment-legend"><span><i class="sed-swatch surplus"></i>Surplus/Deposisi</span><span><i class="sed-swatch local"></i>Deposisi Lokal</span><span><i class="sed-swatch balance"></i>Relatif Seimbang</span><span><i class="sed-swatch bypass"></i>Bypass/Export</span><span><i class="sed-swatch deficit"></i>Defisit/Erosi</span></div>
+      </div>
+      <aside class="sediment-side"><small>HASIL ANALISA</small><h3 id="sedimentSideTitle">Semua Segmen</h3><div class="sediment-kpis"><article><span>KELAS DOMINAN</span><b id="sedDominant">—</b><small id="sedDominantPct">Menunggu GeoJSON</small></article><article><span>JUMLAH DATA</span><b id="sedCount">—</b><small>observasi spasial</small></article></div><div class="sediment-conclusion"><span>KESIMPULAN SINGKAT</span><p id="sedConclusion">Pilih segmen untuk membaca kecenderungan proksi sedimen.</p></div></aside>
+    </div>
+
+    <div class="heatmap-panel">
+      <div class="heatmap-head"><div><small>DINAMIKA TEMPORAL 1988–2025</small><h3>Heatmap Proksi Sedimen</h3></div><div class="heatmap-tabs"><button class="active" data-heatmap="natural">Natural</button><button data-heatmap="buatan">Buatan</button><button data-heatmap="sel">Per Sel</button></div></div>
+      <div class="heatmap-body">
+        <div class="heatmap-scroll"><div id="sedimentHeatmap" class="sediment-heatmap"></div></div>
+        <aside class="heatmap-legend" aria-label="Keterangan warna heatmap">
+          <small>KETERANGAN WARNA</small>
+          <div><i style="background:#1b9e77"></i><span>Surplus/Deposisi</span></div>
+          <div><i style="background:#66c2a5"></i><span>Deposisi Lokal</span></div>
+          <div><i style="background:#ffd92f"></i><span>Relatif Seimbang</span></div>
+          <div><i style="background:#fc8d59"></i><span>Bypass/Export</span></div>
+          <div><i style="background:#d73027"></i><span>Defisit/Erosi</span></div>
+          <div><i style="background:#e8ecea"></i><span>Tidak ada data</span></div>
+        </aside>
+      </div>
+      <div class="heatmap-caption" id="heatmapCaption">Segmen natural: pola kelas proksi per transek dan tahun.</div>
+    </div>
+
+    <div class="sediment-comparison"><article><span>NATURAL</span><b>Defisit/Erosi 28,2%</b><p>Defisit/erosi merupakan kelas paling sering muncul (130 dari 461 observasi), diikuti bypass/export 24,9%. Pola ini konsisten dengan respons garis pantai natural yang lebih erosif.</p></article><article><span>BUATAN</span><b>Defisit/Erosi 26,8%</b><p>Defisit/erosi juga dominan (315 dari 1.175 observasi), tetapi distribusinya lebih heterogen karena deposisi, bypass, dan respons lokal di sekitar struktur pantai.</p></article></div>
+  </div>
+</section>
+
+<section id="hasil-rf" class="section result-section rf-section">
+  <div class="section-wrap">
+    <div class="result-kicker"><span>06 / HASIL &amp; PEMBAHASAN · 04</span><span>RANDOM FOREST · PREDIKSI 2035</span></div>
+    <div class="result-title-row"><div><h2>Prediksi Garis Pantai 2035</h2><p>Prediksi Random Forest dianalisis terpisah untuk segmen natural dan buatan, kemudian ditampilkan kembali dalam satu garis prediksi untuk membandingkan posisi 2035 terhadap baseline 2025.</p></div><div class="result-period"><small>HORIZON</small><strong>10 tahun</strong><span>2025 → 2035</span></div></div>
+
+    <div class="rf-layout"><div class="rf-map-card"><div class="map-toolbar"><b><span class="dot"></span>PETA PREDIKSI RF</b><span>GARIS_RF_2035 + baseline 2025</span></div><div class="rf-map-wrap"><div id="rfMap"></div><div id="rfInfo" class="cvi-info-map rf-info-map"><strong class="rf-info-title">Prediksi 2035</strong><p class="rf-info-hint"></p></div></div><div class="rf-legend"><span><i class="rf-line base-natural"></i>Baseline 2025 Natural</span><span><i class="rf-line base-buatan"></i>Baseline 2025 Buatan</span><span><i class="rf-line pred-natural"></i>2035 Natural</span><span><i class="rf-line pred-buatan"></i>2035 Buatan</span></div></div>
+      <aside class="rf-side"><small>HASIL PREDIKSI</small><h3>Natural vs Buatan</h3><div class="rf-summary"><article><span>NATURAL</span><b>−24,10 m</b><small>rata-rata perubahan 2025–2035</small><p>12 dari 13 transek diprediksi mundur. Kemunduran terbesar T37: −43,33 m.</p></article><article><span>BUATAN</span><b>−3,57 m</b><small>rata-rata perubahan 2025–2035</small><p>20 dari 33 transek mundur dan 13 maju. Kemunduran terbesar T36: −47,69 m.</p></article></div><div class="rf-conclusion"><span>KESIMPULAN SINGKAT</span><p>Prediksi menunjukkan segmen natural cenderung mengalami kemunduran yang lebih konsisten, sedangkan segmen buatan lebih heterogen: sebagian mundur dan sebagian mengalami kemajuan garis pantai.</p></div></aside>
+    </div>
+
+    <div class="importance-panel"><div class="importance-head"><small>FEATURE IMPORTANCE</small><h3>Faktor dominan model Random Forest</h3><p>Persentase berasal dari file feature importance model natural dan buatan.</p></div><div class="importance-grid"><div><h4>Natural</h4><div id="importanceNatural" class="importance-bars"></div></div><div><h4>Buatan</h4><div id="importanceBuatan" class="importance-bars"></div></div></div><div class="importance-note"><b>Interpretasi:</b> Pada segmen natural, Elevasi (24,48%), Kemiringan Lereng (23,91%), dan Jarak Muara (23,77%) hampir seimbang sebagai faktor utama. Pada segmen buatan, Elevasi (25,09%) dan Jarak Muara (24,57%) paling dominan, diikuti Kemiringan Lereng (16,58%).</div></div>
+
+    <div class="rf-rq2"><span>JAWABAN RQ2 · RANDOM FOREST</span><p><strong>Prediksi posisi garis pantai 2035 menunjukkan pola perubahan fisik yang berbeda antara segmen natural dan buatan.</strong> Pada segmen natural, 12 dari 13 transek diprediksi mundur dengan perubahan rata-rata −24,10 m, sehingga kemunduran bersifat lebih konsisten. Pada segmen buatan, perubahan rata-rata hanya −3,57 m dan responsnya lebih heterogen: 20 dari 33 transek mundur, sedangkan 13 transek maju. Feature importance menunjukkan bahwa prediksi terutama berkaitan dengan elevasi, kemiringan lereng, dan jarak muara pada segmen natural; pada segmen buatan elevasi dan jarak muara tetap dominan, tetapi pengaruh kondisi fisik berinteraksi dengan modifikasi pantai. Dengan demikian, model Random Forest memproyeksikan garis pantai 2035 tidak bergeser secara seragam, melainkan mengikuti perbedaan kondisi fisik dan tipe segmentasi pantai.</p></div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <strong>WEBGIS TESIS KOTA TEGAL</strong>
+  <span>Rifqiya Luthfiyani · 2026</span>
+</footer>
+
+<script src="https://unpkg.com/maplibre-gl@5.7.0/dist/maplibre-gl.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
