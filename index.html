@@ -451,14 +451,39 @@
   <div class="section-wrap">
     <div class="result-kicker"><span>06 / HASIL &amp; PEMBAHASAN · 04</span><span>RANDOM FOREST · PREDIKSI 2035</span></div>
     <div class="result-title-row"><div><h2>Prediksi Garis Pantai 2035</h2><p>Prediksi Random Forest dianalisis terpisah untuk segmen natural dan buatan, kemudian ditampilkan kembali dalam satu garis prediksi untuk membandingkan posisi 2035 terhadap baseline 2025.</p></div><div class="result-period"><small>HORIZON</small><strong>10 tahun</strong><span>2025 → 2035</span></div></div>
-
-    <div class="rf-layout"><div class="rf-map-card"><div class="map-toolbar"><b><span class="dot"></span>PETA PREDIKSI RF</b><span>GARIS_RF_2035 + baseline 2025</span></div><div class="rf-map-wrap"><div id="rfMap"></div><div id="rfInfo" class="cvi-info-map rf-info-map"><strong class="rf-info-title">Prediksi 2035</strong><p class="rf-info-hint"></p></div></div><div class="rf-legend"><span><i class="rf-line base-natural"></i>Baseline 2025 Natural</span><span><i class="rf-line base-buatan"></i>Baseline 2025 Buatan</span><span><i class="rf-line pred-natural"></i>2035 Natural</span><span><i class="rf-line pred-buatan"></i>2035 Buatan</span></div></div>
+    <div class="rf-layout"><div class="rf-map-card"><div class="map-toolbar"><b><span class="dot"></span>PETA PREDIKSI RF</b><span>GARIS_RF_2035 + baseline 2025</span></div><div class="rf-map-wrap"><div id="rfMap"></div><div id="rfInfo" class="cvi-info-map rf-info-map"><strong class="rf-info-title">Prediksi 2035</strong><p class="rf-info-hint"> untuk melihat transek.</p></div></div><div class="rf-legend"><span><i class="rf-line base-natural"></i>Baseline 2025 Natural</span><span><i class="rf-line base-buatan"></i>Baseline 2025 Buatan</span><span><i class="rf-line pred-natural"></i>2035 Natural</span><span><i class="rf-line pred-buatan"></i>2035 Buatan</span></div></div>
       <aside class="rf-side"><small>HASIL PREDIKSI</small><h3>Natural vs Buatan</h3><div class="rf-summary"><article><span>NATURAL</span><b>−24,10 m</b><small>rata-rata perubahan 2025–2035</small><p>12 dari 13 transek diprediksi mundur. Kemunduran terbesar T37: −43,33 m.</p></article><article><span>BUATAN</span><b>−3,57 m</b><small>rata-rata perubahan 2025–2035</small><p>20 dari 33 transek mundur dan 13 maju. Kemunduran terbesar T36: −47,69 m.</p></article></div><div class="rf-conclusion"><span>KESIMPULAN SINGKAT</span><p>Prediksi menunjukkan segmen natural cenderung mengalami kemunduran yang lebih konsisten, sedangkan segmen buatan lebih heterogen: sebagian mundur dan sebagian mengalami kemajuan garis pantai.</p></div></aside>
+    </div>
+
+    <div class="rf-evaluation-panel">
+      <div class="rf-evaluation-head">
+        <small>EVALUASI MODEL</small>
+        <h3>Kinerja Random Forest</h3>
+        <p>Evaluasi model ditampilkan terpisah untuk segmen natural dan buatan menggunakan R², MAE, dan RMSE.</p>
+      </div>
+      <div class="rf-evaluation-grid">
+        <article>
+          <span>NATURAL · 13 TRANSEK</span>
+          <div class="rf-metric-row">
+            <div><small>R²</small><b>0,981</b></div>
+            <div><small>MAE</small><b>0,153</b><em>m/tahun</em></div>
+            <div><small>RMSE</small><b>0,185</b><em>m/tahun</em></div>
+          </div>
+        </article>
+        <article>
+          <span>BUATAN · 33 TRANSEK</span>
+          <div class="rf-metric-row">
+            <div><small>R²</small><b>0,991</b></div>
+            <div><small>MAE</small><b>0,144</b><em>m/tahun</em></div>
+            <div><small>RMSE</small><b>0,184</b><em>m/tahun</em></div>
+          </div>
+        </article>
+      </div>
     </div>
 
     <div class="importance-panel"><div class="importance-head"><small>FEATURE IMPORTANCE</small><h3>Faktor dominan model Random Forest</h3><p>Persentase berasal dari file feature importance model natural dan buatan.</p></div><div class="importance-grid"><div><h4>Natural</h4><div id="importanceNatural" class="importance-bars"></div></div><div><h4>Buatan</h4><div id="importanceBuatan" class="importance-bars"></div></div></div><div class="importance-note"><b>Interpretasi:</b> Pada segmen natural, Elevasi (24,48%), Kemiringan Lereng (23,91%), dan Jarak Muara (23,77%) hampir seimbang sebagai faktor utama. Pada segmen buatan, Elevasi (25,09%) dan Jarak Muara (24,57%) paling dominan, diikuti Kemiringan Lereng (16,58%).</div></div>
 
-    <div class="rf-rq2"><span>JAWABAN RQ2 · RANDOM FOREST</span><p><strong>Prediksi posisi garis pantai 2035 menunjukkan pola perubahan fisik yang berbeda antara segmen natural dan buatan.</strong> Pada segmen natural, 12 dari 13 transek diprediksi mundur dengan perubahan rata-rata −24,10 m, sehingga kemunduran bersifat lebih konsisten. Pada segmen buatan, perubahan rata-rata hanya −3,57 m dan responsnya lebih heterogen: 20 dari 33 transek mundur, sedangkan 13 transek maju. Feature importance menunjukkan bahwa prediksi terutama berkaitan dengan elevasi, kemiringan lereng, dan jarak muara pada segmen natural; pada segmen buatan elevasi dan jarak muara tetap dominan, tetapi pengaruh kondisi fisik berinteraksi dengan modifikasi pantai. Dengan demikian, model Random Forest memproyeksikan garis pantai 2035 tidak bergeser secara seragam, melainkan mengikuti perbedaan kondisi fisik dan tipe segmentasi pantai.</p></div>
+    <div class="rf-rq2"><span>JAWABAN RQ2 · RANDOM FOREST</span><p><strong>Prediksi posisi garis pantai 2035 menunjukkan pola perubahan fisik yang berbeda antara segmen natural dan buatan.</strong> Kinerja model menunjukkan R² 0,981, MAE 0,153 m/tahun, dan RMSE 0,185 m/tahun pada segmen natural; sedangkan segmen buatan menghasilkan R² 0,991, MAE 0,144 m/tahun, dan RMSE 0,184 m/tahun. Pada segmen natural, 12 dari 13 transek diprediksi mundur dengan perubahan rata-rata −24,10 m, sehingga kemunduran bersifat lebih konsisten. Pada segmen buatan, perubahan rata-rata hanya −3,57 m dan responsnya lebih heterogen: 20 dari 33 transek mundur, sedangkan 13 transek maju. Feature importance menunjukkan bahwa prediksi terutama berkaitan dengan elevasi, kemiringan lereng, dan jarak muara pada segmen natural; pada segmen buatan elevasi dan jarak muara tetap dominan, tetapi pengaruh kondisi fisik berinteraksi dengan modifikasi pantai. Dengan demikian, model Random Forest memproyeksikan garis pantai 2035 tidak bergeser secara seragam, melainkan mengikuti perbedaan kondisi fisik dan tipe segmentasi pantai.</p></div>
   </div>
 </section>
 
