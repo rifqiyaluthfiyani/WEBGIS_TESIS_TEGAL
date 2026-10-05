@@ -517,3 +517,83 @@ footer span{color:rgba(255,255,255,.6)}
 /* RF: kesimpulan dipindahkan ke bawah peta agar tampil memanjang */
 .rf-conclusion-wide{margin:0;border-left:0;border-top:3px solid var(--teal);padding:18px 22px 20px;background:var(--teal-soft)}
 .rf-conclusion-wide p{max-width:none;margin:8px 0 0;font-size:11px;line-height:1.65}
+
+
+/* ===== ARAH POTENSIAL TRANSPOR SEDIMEN ===== */
+.sed-direction-panel{margin-top:26px;background:#fff;border:1px solid var(--line);box-shadow:0 12px 32px rgba(18,55,70,.06);overflow:hidden}
+.sed-direction-head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;padding:22px;border-bottom:1px solid var(--line)}
+.sed-direction-head>div:first-child{max-width:650px}.sed-direction-head small{display:block;font-size:9px;letter-spacing:1.4px;font-weight:800;color:var(--teal)}
+.sed-direction-head h3{font:500 27px Georgia,serif;color:var(--navy);margin:5px 0}.sed-direction-head p{font-size:11px;line-height:1.55;color:var(--muted)}
+.sed-direction-tools{display:flex;align-items:center;justify-content:flex-end;gap:10px;flex-wrap:wrap}.sed-direction-segments{display:flex;border:1px solid var(--line)}
+.sed-direction-segments button{border:0;border-right:1px solid var(--line);background:#fff;padding:9px 12px;font-size:9px;color:var(--muted)}.sed-direction-segments button:last-child{border-right:0}.sed-direction-segments button.active{background:var(--navy);color:#fff}
+.sed-direction-tools label{font-size:9px;color:var(--muted)}.sed-direction-tools select{margin-left:5px;padding:8px 26px 8px 9px;border:1px solid var(--line);background:#fff;color:var(--navy);font-size:10px}
+.sed-direction-map-wrap{position:relative}#sedimentDirectionMap{height:540px;background:#dce8e7}.sed-direction-badge{position:absolute;left:14px;top:14px;z-index:3;background:rgba(255,255,255,.94);border-left:3px solid var(--teal);padding:10px 13px;box-shadow:0 5px 18px rgba(18,55,70,.12)}.sed-direction-badge b,.sed-direction-badge span{display:block}.sed-direction-badge b{font-size:11px;color:var(--navy)}.sed-direction-badge span{font-size:9px;color:var(--muted);margin-top:2px}
+.sed-direction-legend{display:flex;flex-wrap:wrap;gap:16px;padding:13px 18px;border-top:1px solid var(--line);font-size:9px;color:var(--muted);align-items:center}.sed-direction-legend span{display:flex;align-items:center;gap:6px}.dir-arrow{font-style:normal;font-size:18px;color:var(--navy);line-height:1}.dir-line{display:inline-block;width:22px;height:3px}.dir-line.surplus{background:#1b9e77}.dir-line.local{background:#66c2a5}.dir-line.balance{background:#ffd92f}.dir-line.bypass{background:#fc8d59}.dir-line.deficit{background:#d73027}.dir-line.nodom{background:#87979b}
+@media(max-width:900px){.sed-direction-head{align-items:flex-start;flex-direction:column}.sed-direction-tools{justify-content:flex-start}#sedimentDirectionMap{height:430px}}
+/* Peta proksi + heatmap digabung */
+.sediment-controlbar{display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:16px}
+.sediment-controlbar .sediment-controls{margin-bottom:0}
+.sediment-view-controls{display:flex;align-items:center;border:1px solid var(--line);background:#fff}
+.sediment-view-controls>span{padding:0 10px;font-size:9px;color:var(--muted);font-weight:700;letter-spacing:.7px}
+.sediment-view-controls button{border:0;border-left:1px solid var(--line);background:#fff;padding:10px 14px;font-size:9px;color:var(--muted)}
+.sediment-view-controls button.active{background:var(--teal);color:#fff}
+.sediment-view-controls label{border-left:1px solid var(--line);padding-left:10px;font-size:9px;color:var(--muted)}
+.sediment-view-controls select{border:0;background:#fff;color:var(--navy);padding:9px 28px 9px 7px}
+@media(max-width:700px){.sediment-controlbar{align-items:stretch}.sediment-view-controls{width:100%;flex-wrap:wrap}.sediment-view-controls label{margin-left:auto}}
+
+/* Heatmap gabungan: legenda kepadatan */
+.sediment-legend .heat-gradient{display:inline-block;width:150px;height:10px;border-radius:999px;background:linear-gradient(90deg,rgba(23,127,123,.15),#66c2a5,#ffd92f,#fc8d59,#d73027);margin:0 8px}
+.sediment-legend .heat-legend-label{font-weight:700;color:#123746;margin-right:4px}
+
+/* Heatmap matriks di dalam panel peta proksi */
+.sediment-matrix-view{height:500px;background:#fff;overflow:hidden;position:relative}
+.sediment-matrix-view[hidden]{display:none!important}
+.sediment-matrix-view .matrix-head{padding:14px 18px 8px;border-bottom:1px solid var(--line);background:#f8faf8}
+.sediment-matrix-view .matrix-head small{font-size:8px;letter-spacing:1.4px;color:var(--teal);font-weight:800}
+.sediment-matrix-view .matrix-head h4{font:500 20px Georgia,serif;color:var(--navy);margin:3px 0 0}
+.sediment-matrix-view .heatmap-scroll{height:390px;max-height:none;overflow:auto;padding:14px 16px}
+.sediment-matrix-view .matrix-group{margin-bottom:16px;width:max-content;min-width:100%}
+.sediment-matrix-view .matrix-group-label{font-size:9px;letter-spacing:1.3px;font-weight:800;color:var(--teal);margin:0 0 7px 90px}
+.sediment-matrix-view .hm-grid{gap:2px}
+.sediment-matrix-view .hm-cell{width:22px;height:15px;border-radius:1px;box-sizing:border-box}
+.sediment-matrix-view .hm-cell:hover{outline:2px solid var(--navy);outline-offset:1px}
+.sediment-matrix-view .hm-year{height:35px}
+.sediment-matrix-view .heatmap-caption{position:absolute;left:0;right:0;bottom:0;background:#fff;padding:9px 16px}
+.sed-swatch.na{background:#e8ecea}
+@media(max-width:900px){.sediment-matrix-view{height:420px}.sediment-matrix-view .heatmap-scroll{height:315px}}
+\n/* FINAL: heatmap matriks memakai layout peta + panel analisa */
+.sediment-layout{align-items:stretch}
+.sediment-map-card{display:flex;flex-direction:column}
+.sediment-map-wrap{flex:1;min-height:500px}
+.sediment-matrix-view{height:500px;background:#fff;overflow:hidden;position:relative}
+.sediment-matrix-view .matrix-head{padding:16px 20px 10px;background:#f7faf8;border-bottom:1px solid var(--line)}
+.sediment-matrix-view .matrix-head h4{font:500 24px Georgia,serif;margin:4px 0 0;color:var(--navy)}
+.sediment-matrix-view .heatmap-scroll{height:382px;max-height:none;overflow:auto;padding:14px 18px 48px}
+.sediment-matrix-view .matrix-group{margin-bottom:18px;width:max-content;min-width:100%}
+.sediment-matrix-view .matrix-group-label{margin-left:94px;margin-bottom:7px}
+.sediment-matrix-view .hm-grid{gap:2px;align-items:center}
+.sediment-matrix-view .hm-label{font-size:9px;min-height:18px;display:flex;align-items:center}
+.sediment-matrix-view .hm-year{font-size:8px;height:38px;font-weight:700}
+.sediment-matrix-view .hm-cell{width:22px;height:18px;border-radius:2px;border:1px solid rgba(18,55,70,.08)}
+.sediment-matrix-view .heatmap-caption{font-size:9px}
+.sediment-side{background:#fff;min-height:500px}
+.sediment-conclusion mark{background:#e8f238;color:#123746;font-weight:800;padding:1px 3px;border-radius:2px}
+.sediment-conclusion p{line-height:1.7}
+@media(max-width:900px){.sediment-side{min-height:auto}.sediment-matrix-view{height:430px}.sediment-matrix-view .heatmap-scroll{height:315px}}
+/* Final proksi sediment: single dot map, no heatmap */
+#sedimentDotMap{width:100%;height:100%;min-height:560px}
+.sed-dot-badge{position:absolute;z-index:4;left:18px;top:18px;background:rgba(255,255,255,.94);border-left:3px solid #177f7b;padding:13px 16px;box-shadow:0 8px 24px rgba(18,55,70,.08);display:flex;flex-direction:column;gap:4px;color:#123746}
+.sed-dot-badge b{font-size:13px}.sed-dot-badge span{font-size:10px;color:#6c8087}
+.sediment-view-controls{margin-left:auto}
+.sediment-view-controls label{display:flex;align-items:center;gap:10px}
+
+/* Ringkasan arah potensial transpor sedimen: gambar per periode */
+.sed-direction-image-panel{margin-top:26px;background:#fff;border:1px solid var(--line);box-shadow:0 12px 32px rgba(18,55,70,.06);overflow:hidden}
+.sed-direction-image-head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;padding:24px 26px 20px;border-bottom:1px solid var(--line)}
+.sed-direction-image-head>div:first-child{max-width:760px}.sed-direction-image-head small{display:block;font-size:9px;letter-spacing:1.4px;font-weight:800;color:var(--teal)}
+.sed-direction-image-head h3{font:500 28px Georgia,serif;color:var(--navy);margin:5px 0 7px}.sed-direction-image-head p{font-size:11px;line-height:1.65;color:var(--muted);margin:0}
+.sed-direction-image-tabs{display:flex;border:1px solid var(--line);background:#fff;flex:0 0 auto}.sed-direction-image-tabs button{border:0;border-right:1px solid var(--line);background:#fff;padding:11px 18px;font-size:10px;font-weight:700;color:var(--muted);cursor:pointer}.sed-direction-image-tabs button:last-child{border-right:0}.sed-direction-image-tabs button.active{background:var(--navy);color:#fff}
+.sed-direction-image-stage{padding:22px 24px 14px;background:#f7faf8}.sed-direction-figure{margin:0}.sed-direction-figure[hidden]{display:none!important}.sed-direction-figure img{display:block;width:100%;height:auto;max-height:980px;object-fit:contain;background:#fff;border:1px solid var(--line)}
+.sed-direction-figure figcaption{padding:11px 2px 0;font-size:10px;line-height:1.6;color:var(--muted)}.sed-direction-figure figcaption b{color:var(--navy)}
+.sed-direction-image-note{padding:14px 26px 17px;border-top:1px solid var(--line);font-size:10px;line-height:1.65;color:var(--muted);background:#fff}.sed-direction-image-note b{color:var(--navy)}
+@media(max-width:900px){.sed-direction-image-head{align-items:flex-start;flex-direction:column}.sed-direction-image-tabs{width:100%}.sed-direction-image-tabs button{flex:1}.sed-direction-image-stage{padding:14px}.sed-direction-image-head{padding:20px}.sed-direction-image-note{padding:13px 20px}}
