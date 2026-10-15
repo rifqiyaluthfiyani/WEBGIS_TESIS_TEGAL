@@ -597,3 +597,43 @@ footer span{color:rgba(255,255,255,.6)}
 .sed-direction-figure figcaption{padding:11px 2px 0;font-size:10px;line-height:1.6;color:var(--muted)}.sed-direction-figure figcaption b{color:var(--navy)}
 .sed-direction-image-note{padding:14px 26px 17px;border-top:1px solid var(--line);font-size:10px;line-height:1.65;color:var(--muted);background:#fff}.sed-direction-image-note b{color:var(--navy)}
 @media(max-width:900px){.sed-direction-image-head{align-items:flex-start;flex-direction:column}.sed-direction-image-tabs{width:100%}.sed-direction-image-tabs button{flex:1}.sed-direction-image-stage{padding:14px}.sed-direction-image-head{padding:20px}.sed-direction-image-note{padding:13px 20px}}
+
+/* Bab V tata ruang dan Bab VI */
+.spatial-kpis,.conclusion-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:24px 0}.spatial-kpis article,.conclusion-grid article{background:#fff;border:1px solid var(--line);padding:20px}.spatial-kpis span,.conclusion-grid small,.spatial-discussion span{font-size:10px;letter-spacing:1px;color:var(--teal);font-weight:700}.spatial-kpis strong{display:block;font:600 29px Georgia,serif;color:var(--navy);margin:8px 0}.spatial-kpis small{color:var(--muted)}.spatial-layout{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(270px,.5fr);background:white;border:1px solid var(--line)}#spatialMap{height:490px}.spatial-side{padding:25px}.spatial-side h3,.conclusion-grid h3,.spatial-discussion h3,.recommendations h3{font:500 24px Georgia,serif;color:var(--navy);margin:10px 0}.spatial-stack{display:flex;height:22px;overflow:hidden;margin:22px 0}.spatial-counts{display:grid;gap:10px}.spatial-counts article{display:flex;align-items:center;gap:15px}.spatial-counts b{font:600 25px Georgia,serif;color:var(--navy)}.spatial-counts span,.spatial-explain,.spatial-discussion p,.conclusion-grid p,.recommendations p{font-size:13px;line-height:1.65;color:var(--muted)}.spatial-explain{margin-top:20px}.spatial-status{padding:10px 15px;font-size:11px;color:var(--muted)}.spatial-legend{display:flex;gap:16px;flex-wrap:wrap;padding:12px 16px;font-size:11px}.spatial-legend i{display:inline-block;width:18px;height:8px;margin-right:6px}.spatial-discussion{display:grid;grid-template-columns:repeat(3,1fr);gap:15px;margin:22px 0}.spatial-discussion article{background:#fff;border-top:3px solid var(--teal);padding:22px}.recommendations{background:#fff;padding:30px;border:1px solid var(--line);margin-top:20px}.recommendation-grid{display:grid;grid-template-columns:1fr 1fr;gap:25px}.recommendations h4{color:var(--navy);margin:10px 0}@media(max-width:950px){.spatial-kpis,.conclusion-grid{grid-template-columns:repeat(2,1fr)}.spatial-layout,.spatial-discussion,.recommendation-grid{grid-template-columns:1fr}}@media(max-width:550px){.spatial-kpis,.conclusion-grid{grid-template-columns:1fr}#spatialMap{height:350px}}
+
+/* Revisi angka Random Forest 2035 */
+.rf-detail-2035{margin:22px 0;padding:24px;border:1px solid #d7e4e6;border-radius:16px;background:#fff}.rf-detail-controls{display:flex;gap:18px;flex-wrap:wrap;margin:18px 0}.rf-detail-controls label{display:flex;flex-direction:column;gap:7px;color:#345;font-size:13px;font-weight:600}.rf-detail-controls input,.rf-detail-controls select{border:1px solid #cadbdc;border-radius:9px;padding:10px 12px;min-width:180px;background:#fff;color:#123}.rf-detail-table-wrap{overflow:auto;max-height:430px;border:1px solid #e0e8ea;border-radius:10px}.rf-detail-table{width:100%;border-collapse:collapse;font-size:13px;white-space:nowrap}.rf-detail-table th,.rf-detail-table td{padding:10px 13px;text-align:left;border-bottom:1px solid #e7eff0}.rf-detail-table thead th{position:sticky;top:0;background:#eaf3f4;color:#234;z-index:1}.rf-detail-table tbody tr:nth-child(2n){background:#f7fbfb}.rf-detail-table .rf-retreat{color:#ba3a30}.rf-detail-table .rf-advance{color:#087e72}.rf-data-caption{display:block;color:#556;line-height:1.6;margin-top:10px}
+/* Kontrol dan popup analisis tata ruang */
+.spatial-controls{display:flex;flex-wrap:wrap;gap:8px 16px;padding:14px 16px;background:#f3f7fa;border-bottom:1px solid #dce5e9}
+.spatial-controls label{display:flex;align-items:center;gap:6px;cursor:pointer;font-size:12px;color:#234456}
+.spatial-controls input{accent-color:#157f86;width:15px;height:15px}
+.spatial-key{display:flex;flex-wrap:wrap;gap:12px;padding:10px 16px;background:#fff;font-size:11px;color:#385363}
+.spatial-key span{display:inline-flex;align-items:center;gap:5px}.spatial-key i{width:20px;height:6px;display:inline-block}
+.spatial-map-note{padding:0 16px 12px;font-size:12px;line-height:1.65;color:#4b6975}
+.spatial-pop{font-family:Arial,sans-serif;max-height:330px;overflow:auto;min-width:245px;padding-right:5px}
+.spatial-pop h4{margin:1px 0 12px;font-size:15px;color:#193b54}
+.spatial-pop-row{border-top:1px solid #edf0f3;padding:7px 0;display:grid;grid-template-columns:110px 1fr;gap:8px;align-items:start;font-size:11px;line-height:1.5}
+.spatial-pop-row span{color:#637b88}.spatial-pop-row strong{font-weight:600;color:#183949;word-break:break-word}
+.spatial-map-card .maplibregl-popup-content{border-radius:7px;box-shadow:0 5px 25px #112e3c25;padding:14px}
+@media(max-width:650px){.spatial-pop-row{grid-template-columns:95px 1fr}.spatial-controls{gap:10px}}
+
+/* Perbedaan skema validasi Random Forest sesuai Tabel 7 draft tesis. */
+.rf-validation-row{background:#eaf4f4!important}
+.rf-validation-row td:first-child{border-left:4px solid #177a80}
+.rf-evaluation-head p{max-width:950px;line-height:1.65}
+
+/* Tiga indikator tata ruang setelah penghapusan kartu sempadan */
+.spatial-kpis{grid-template-columns:repeat(3,minmax(0,1fr))}
+.rf-rq2 p+p{margin-top:12px}
+@media(max-width:950px){.spatial-kpis{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:550px){.spatial-kpis{grid-template-columns:1fr}}
+
+/* Narasi jawaban RQ 3 diperluas; menjaga keterbacaan pada layar kecil. */
+.spatial-rq3 p{margin-top:12px;line-height:1.7}.spatial-rq3 h3{margin:12px 0 14px;font-size:clamp(19px,2vw,27px);line-height:1.25}.spatial-rq3 strong{font-weight:700}
+
+/* Kesimpulan Bab VI diselaraskan dengan draft tesis */
+.conclusion-synthesis{background:#edf7f4;border-left:4px solid #1b827d;padding:20px 24px;margin:16px 0 24px}.conclusion-synthesis small{font-weight:750;font-size:10px;letter-spacing:1.2px;color:#167970}.conclusion-synthesis p{margin:9px 0 0;line-height:1.75;color:#334e54;font-size:14px}.recommendation-grid p+p{margin-top:12px}
+
+/* Kesimpulan Bab VI diringkas menjadi tiga poin utama. */
+#kesimpulan-saran .conclusion-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+@media(max-width:950px){#kesimpulan-saran .conclusion-grid{grid-template-columns:1fr}}
