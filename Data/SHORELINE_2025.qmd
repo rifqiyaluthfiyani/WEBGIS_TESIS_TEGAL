@@ -1,10 +1,10 @@
 <!DOCTYPE qgis PUBLIC 'http://mrcc.com/qgis.dtd' 'SYSTEM'>
 <qgis version="3.44.3-Solothurn">
-  <identifier>Garpan_split</identifier>
+  <identifier></identifier>
   <parentidentifier></parentidentifier>
-  <language>ENG</language>
+  <language></language>
   <type>dataset</type>
-  <title>Garpan_split</title>
+  <title></title>
   <abstract></abstract>
   <links/>
   <dates/>
